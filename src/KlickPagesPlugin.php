@@ -1,15 +1,15 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace Perspikapps\KlickPages;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 
-class SkeletonPlugin implements Plugin
+class KlickPagesPlugin implements Plugin
 {
     public function getId(): string
     {
-        return 'skeleton';
+        return 'klick-pages';
     }
 
     public function register(Panel $panel): void

@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Perspikapps\KlickPages\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class KlickPagesCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'klick-pages';
 
     public $description = 'My command';
 
