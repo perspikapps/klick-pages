@@ -1,26 +1,156 @@
 {
-    "private": true,
-    "type": "module",
-    "scripts": {
-        "dev:styles": "npx tailwindcss -i resources/css/index.css -o resources/dist/skeleton.css --postcss --watch",
-        "dev:scripts": "node bin/build.js --dev",
-        "build:styles": "npx tailwindcss -i resources/css/index.css -o resources/dist/skeleton.css --postcss --minify && npm run purge",
-        "build:scripts": "node bin/build.js",
-        "purge": "filament-purge -i resources/dist/skeleton.css -o resources/dist/skeleton.css -v 3.x",
-        "dev": "npm-run-all --parallel dev:*",
-        "build": "npm-run-all build:*"
+    "name": "@perspikapps/klick-pages",
+    "version": "0.0.0",
+    "description": "<!-- @format -->",
+    "homepage": "https://github.com/perspikapps/klick-pages#readme",
+    "bugs": {
+        "url": "https://github.com/perspikapps/klick-pages/issues"
     },
-    "devDependencies": {
-        "@awcodes/filament-plugin-purge": "^1.1.1",
-        "@tailwindcss/forms": "^0.5.4",
-        "@tailwindcss/typography": "^0.5.9",
-        "autoprefixer": "^10.4.14",
-        "esbuild": "^0.19.2",
-        "npm-run-all": "^4.1.5",
-        "postcss": "^8.4.26",
-        "postcss-import": "^15.1.0",
-        "prettier": "^2.7.1",
-        "prettier-plugin-tailwindcss": "^0.1.13",
-        "tailwindcss": "^3.3.3"
+    "author": "Thomas G. <1809566+tomgrv@users.noreply.github.com>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/perspikapps/klick-pages"
+    },
+    "scripts": {
+        "lint": "npx --yes lint-staged",
+        "release": "npx --yes commit-and-tag-version --no-verify --",
+        "test": "echo \"Warning: no test specified\"",
+        "update": "npx --yes npm-check-updates -i -u",
+        "update-all": "npm run update -ws --root"
+    },
+    "config": {
+        "commitizen": {
+            "path": "@commitlint/cz-commitlint"
+        }
+    },
+    "prettier": {
+        "insertPragma": true,
+        "overrides": [
+            {
+                "files": "*.yml",
+                "options": {
+                    "useTabs": true,
+                    "tabWidth": 2
+                }
+            }
+        ],
+        "plugins": [
+            "prettier-plugin-sh"
+        ],
+        "semi": false,
+        "singleQuote": true,
+        "tabWidth": 4,
+        "trailingComma": "es5"
+    },
+    "commit-and-tag-version": {
+        "bumpFiles": [
+            {
+                "filename": "composer.json",
+                "type": "json"
+            },
+            {
+                "filename": "package.json",
+                "type": "json"
+            },
+            {
+                "filename": "VERSION",
+                "type": "plain-text"
+            }
+        ],
+        "types": [
+            {
+                "section": "Features",
+                "type": "feat"
+            },
+            {
+                "section": "Bug Fixes",
+                "type": "fix"
+            },
+            {
+                "hidden": true,
+                "type": "chore"
+            },
+            {
+                "hidden": true,
+                "type": "docs"
+            },
+            {
+                "hidden": true,
+                "type": "style"
+            },
+            {
+                "hidden": true,
+                "type": "refactor"
+            },
+            {
+                "hidden": true,
+                "type": "perf"
+            },
+            {
+                "hidden": true,
+                "type": "test"
+            }
+        ]
+    },
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ],
+        "rules": {
+            "scope-enum": [
+                2,
+                "always",
+                [
+                    "deps",
+                    "release",
+                    "security",
+                    "i18n",
+                    "config",
+                    "add",
+                    "remove",
+                    "breaking",
+                    "modules",
+                    "packages",
+                    "ui-ux",
+                    "api",
+                    "model"
+                ]
+            ],
+            "subject-case": [
+                2,
+                "never",
+                [
+                    "start-case",
+                    "pascal-case",
+                    "upper-case"
+                ]
+            ]
+        }
+    },
+    "git-precommit-checks": {
+        "rules": [
+            {
+                "message": "You've got leftover conflict markers",
+                "regex": "/^[<>|=]{4,}/m"
+            },
+            {
+                "filter": "(^package\\.json|\\.git-precommit-checks.json)$",
+                "message": "You have unfinished devs",
+                "nonBlocking": "true",
+                "regex": "(?:FIXME|TODO)"
+            }
+        ]
+    },
+    "lint-staged": {
+        "*.json": [
+            "normalize-json -c -w -a -i -f local -l true",
+            "npx --yes prettier --write"
+        ],
+        "*.php": [
+            "composer lint"
+        ],
+        "*.{js,jsx,ts,tsx,md,html,css,vue,yaml,yml}": [
+            "npx --yes prettier --write"
+        ]
     }
 }
