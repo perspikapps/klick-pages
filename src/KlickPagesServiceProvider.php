@@ -10,7 +10,6 @@ use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Filesystem\Filesystem;
 use Livewire\Features\SupportTesting\Testable;
-use Perspikapps\KlickPages\Commands\KlickPagesCommand;
 use Perspikapps\KlickPages\Testing\TestsKlickPages;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
@@ -111,9 +110,7 @@ class KlickPagesServiceProvider extends PackageServiceProvider
      */
     protected function getCommands(): array
     {
-        return [
-            KlickPagesCommand::class,
-        ];
+        return [];
     }
 
     /**

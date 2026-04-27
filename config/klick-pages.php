@@ -1,7 +1,10 @@
 <?php
 
+use Perspikapps\KlickPages\KlickPages;
+use Perspikapps\KlickPages\KlickPagesController;
+
 return [
-    'model' => Perspikapps\KlickPages\KlickPages::class,
+    'model' => KlickPages::class,
 
     'views' => [
         /**
@@ -31,6 +34,6 @@ return [
     'routes' => [
         'name' => 'page',
         'prefix' => '',
-        'handler' => Perspikapps\KlickPages\KlickPagesController::class,
+        'handler' => KlickPagesController::class,
     ],
 ];
